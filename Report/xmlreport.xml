@@ -1,1 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.018" timestamp="2024-03-02T13:53:38.891824" hostname="DESKTOP-UEVTOM8"><testcase classname="Tests.test_login" name="test_login" time="0.001" /></testsuite></testsuites>

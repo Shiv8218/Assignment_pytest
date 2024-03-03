@@ -1,0 +1,47 @@
+
+{
+    "validCredentials":
+      {
+        "username": "student",
+        "password": "Password123"
+      },
+
+    "invalidCredentialsUsername":
+      {
+        "username": "invalidUser1",
+        "password": "Password123"
+      },
+    "invalidCredentialsPassword":
+        {
+          "username": "student",
+          "password": "invalidUser1"
+        },
+      "fullyInvalidCreds":
+        {
+            "username": "studentji",
+            "password": "invalidUser1"
+        },
+        "assertionTexts":
+        {
+            "successLoginPageLoad": "This is a simple Login page. Students can use this page to practice writing simple positive and negative LogIn tests. Login functionality is something that most of the test automation engineers need to automate.",
+            "successLoginText":"Logged In Successfully",
+            "InvalidPassword": "Your password is invalid!",
+            "invalidUserName" :"Your username is invalid!"
+
+        },
+        "api":
+        {
+            "name": "Shivendra ",
+            "job":"SDET",
+            "newName":"Shivendra Pratap",
+            "newJob":"SDET 2",
+            "updatedJob":"SDET 3",
+            "email": "eve.holt@reqres.in",
+            "password": "pistol",
+            "pageID": 2,
+            "invalidID" :3000,
+            "unknownValidID":2,
+            "unknownInValidID":300
+
+        }
+  }
