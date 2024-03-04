@@ -6,51 +6,28 @@ json_data = json.load(json_file)
 
 
 @pytest.mark.usefixtures("setup_and_teardown","log_on_failure")
-class TestSearch:
-    def test_login_with_valid_credential(self):
-        credentials = json_data['validCredentials']
-        assertions = json_data['assertionTexts']
-        self.lp.input_username(credentials['username'])
-        self.lp.input_password(credentials['password'])
-        self.lp.click_submit()
-        self.lp.verify_success_login(assertions['successLoginText'])
+class TestLogin:
+    @pytest.fixture
+    def url(self):
+        return "https://practicetestautomation.com/practice-test-exceptions/"
 
-    def test_logout_functionality(self):
-        credentials = json_data['validCredentials']
-        assertions = json_data['assertionTexts']
-        self.lp.input_username(credentials['username'])
-        self.lp.input_password(credentials['password'])
-        self.lp.click_submit()
-        self.lp.verify_success_login(assertions['successLoginText'])
-        self.lp.logout()
-        self.lp.verify_correct_page_loaded(assertions['successLoginPageLoad'])
+    def test_1_no_such_element_exception_handling(self):
+        inputTexts = json_data['api']
+        self.page_object.add_new_row_and_verify_two_input(inputTexts['newName'])
 
-    def test_verify_error_notification_with_invalid_username(self):
-        credentials = json_data['invalidCredentialsUsername']
-        assertions = json_data['assertionTexts']
-        self.lp.verify_correct_page_loaded(assertions['successLoginPageLoad'])
-        self.lp.input_username(credentials['username'])
-        self.lp.input_password(credentials['password'])
-        self.lp.click_submit()
-        self.lp.verify_invalid_credentials_notification(assertions['invalidUserName'])
+    def test_2_element_not_interactable_exception_handling(self):
+        inputTexts = json_data['api']
+        self.page_object.add_new_row_and_verify_two_input(inputTexts['newName'])
+        self.page_object.add_data_in_row_2(inputTexts['newJob'])
+        self.page_object.verify_save_success('Row 2 was saved')
 
-    def test_verify_error_notification_with_invalid_password(self):
-        credentials = json_data['invalidCredentialsPassword']
-        assertions = json_data['assertionTexts']
-        self.lp.verify_correct_page_loaded(assertions['successLoginPageLoad'])
-        self.lp.input_username(credentials['username'])
-        self.lp.input_password(credentials['password'])
-        self.lp.click_submit()
-        self.lp.verify_invalid_credentials_notification(assertions['InvalidPassword'])
+    def test_3_verify_input_field_disabled_by_default(self):
+        self.page_object.verify_input_disabled_by_default()
 
-    def test_fetch_id_and_password_from_page_then_login(self):
-        assertions = json_data['assertionTexts']
-        self.lp.verify_correct_page_loaded(assertions['successLoginPageLoad'])
-        self.lp.fetch_data_and_login()
-        self.lp.verify_success_login(assertions['successLoginText'])
+    def test_4_stale_element_reference_exception_handling(self):
+        self.page_object.click_add_button()
+        self.page_object.verify_save_success('Row 2 was added')
+        self.page_object.verify_add_button_not_visible()
 
-    def test_verify_error_notification_without_credentials(self):
-        assertions = json_data['assertionTexts']
-        self.lp.verify_correct_page_loaded(assertions['successLoginPageLoad'])
-        self.lp.click_submit()
-        self.lp.verify_invalid_credentials_notification(assertions['invalidUserName'])
+    def test_5_timeout_exception_handling(self):
+        self.page_object.click_add_and_verify_two_input_rows()
