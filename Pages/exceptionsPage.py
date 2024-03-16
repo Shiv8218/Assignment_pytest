@@ -15,8 +15,8 @@ class Exceptions:
     def __init__(self, driver):
         self.driver = driver
 
-    def exceptions_page_load(self):
-        self.driver.get('https://practicetestautomation.com/practice-test-exceptions/')
+    # def exceptions_page_load(self):
+    #     self.driver.get('https://practicetestautomation.com/practice-test-exceptions/')
 
     def verify_exception_page(self, text):
         assert text in self.driver.find_element(By.CSS_SELECTOR, self.landingPageText).text

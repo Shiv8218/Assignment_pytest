@@ -5,13 +5,13 @@
         "username": "student",
         "password": "Password123"
       },
-
-    "invalidCredentialsUsername":
+    
+    "invalidCredentialsUsername": 
       {
         "username": "invalidUser1",
         "password": "Password123"
       },
-    "invalidCredentialsPassword":
+    "invalidCredentialsPassword": 
         {
           "username": "student",
           "password": "invalidUser1"
@@ -21,7 +21,7 @@
             "username": "studentji",
             "password": "invalidUser1"
         },
-        "assertionTexts":
+        "assertionTexts": 
         {
             "successLoginPageLoad": "This is a simple Login page. Students can use this page to practice writing simple positive and negative LogIn tests. Login functionality is something that most of the test automation engineers need to automate.",
             "successLoginText":"Logged In Successfully",
@@ -29,7 +29,7 @@
             "invalidUserName" :"Your username is invalid!"
 
         },
-        "api":
+        "api": 
         {
             "name": "Shivendra ",
             "job":"SDET",
@@ -43,5 +43,6 @@
             "unknownValidID":2,
             "unknownInValidID":300
 
-        }
+        } 
   }
+  

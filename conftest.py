@@ -6,6 +6,7 @@ from selenium import webdriver
 from Pages.loginPage import Login
 from Pages.exceptionsPage import Exceptions
 from Pages.apiMethodsPage import ApiMethods
+from Utilities import ReadConfigurations
 
 
 # This is for taking the failure Screenshot
@@ -27,19 +28,32 @@ def log_on_failure(request):
 
 
 @pytest.fixture
-def setup_and_teardown(request, url):
+def setup_and_teardown(request, endpoint):
+    browser = ReadConfigurations.readconfig("basic info","browser")
     global driver
-    driver = webdriver.Chrome()
+    if browser.capitalize() == "Chrome":
+        driver = webdriver.Chrome()
+    elif browser.capitalize() == "Firefox":
+        driver = webdriver.Firefox()
+    elif browser.capitalize() == "Edge":
+        driver = webdriver.Edge()
+    else:
+        print("This is not a valid Browser.")
     driver.maximize_window()
-    driver.get(url)
+
+    base_url = ReadConfigurations.readconfig("basic info","base_url")
+    uri = base_url+endpoint
+
+    driver.get(uri)
     driver.implicitly_wait(10)
-    if "login" in url:
+    if "login" in uri:
         page_object = Login(driver=driver)
-    elif "exceptions" in url:
+    elif "exceptions" in uri:
         page_object = Exceptions(driver=driver)
     else:
         pass
     request.cls.page_object = page_object
+    driver.implicitly_wait(10)
     yield
     driver.quit()
 

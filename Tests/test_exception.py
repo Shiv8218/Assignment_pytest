@@ -8,8 +8,8 @@ json_data = json.load(json_file)
 @pytest.mark.usefixtures("setup_and_teardown","log_on_failure")
 class TestLogin:
     @pytest.fixture
-    def url(self):
-        return "https://practicetestautomation.com/practice-test-exceptions/"
+    def endpoint(self):
+        return "practice-test-exceptions/"
 
     def test_1_no_such_element_exception_handling(self):
         inputTexts = json_data['api']
