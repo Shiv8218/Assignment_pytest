@@ -1,3 +1,5 @@
+import time
+
 import pytest
 import json
 
@@ -37,6 +39,7 @@ class TestLogin:
         self.page_object.input_username(credentials['username'])
         self.page_object.input_password(credentials['password'])
         self.page_object.click_submit()
+        time.sleep(2)
         self.page_object.verify_invalid_credentials_notification(assertions['invalidUserName'])
 
     def test4_verify_error_notification_with_invalid_password(self):
@@ -46,6 +49,7 @@ class TestLogin:
         self.page_object.input_username(credentials['username'])
         self.page_object.input_password(credentials['password'])
         self.page_object.click_submit()
+        time.sleep(2)
         self.page_object.verify_invalid_credentials_notification(assertions['InvalidPassword'])
 
     def test5_fetch_id_and_password_from_page_then_login(self):
