@@ -6,7 +6,7 @@ json_data = json.load(json_file)
 
 
 @pytest.mark.usefixtures("setup_and_teardown","log_on_failure")
-class TestLogin:
+class TestException:
     @pytest.fixture
     def endpoint(self):
         return "practice-test-exceptions/"
