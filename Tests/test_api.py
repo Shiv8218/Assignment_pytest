@@ -6,7 +6,7 @@ json_data = json.load(json_file)
 
 
 @pytest.mark.usefixtures("api_fixture")
-class TestLogin:
+class TestAPI:
 
     def test_1_get_list_users_page_2(self):
         api = json_data['api']
